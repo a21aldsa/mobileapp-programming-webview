@@ -3,7 +3,14 @@
 
 **Skriv din rapport här!**
 
-_Du kan ta bort all text som finns sedan tidigare_.
+This assignment was about using WebView, so i started by renaming the existing TextView to WebView.
+I then called upon this WebView (via an id i gave it), in MainActivity.java. There, I also enabled JavaScript.
+After that I made a simple html site consisting of just a header and a GIF image.
+Then I placed that site in the assets folder and then called upon it in the existing showInternalWebPage() function. Then i added HIS.se in the existing showExternalWebPage() function.
+Then all that was left was to call upon these functions when the dropdown was clicked.
+
+The first paragraph of program code shows how i implemented the internal webpage in the showInternalWebPage() function.
+The second paragraph shows how said function (and showExternalWebPage, the one for the external web page) are called when the dropdown is used.
 
 ## Följande grundsyn gäller dugga-svar:
 
@@ -16,24 +23,39 @@ _Du kan ta bort all text som finns sedan tidigare_.
 Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
+public void showInternalWebPage(){
+    myWebView.loadUrl("file:///android_asset/for_assets.html");
+}
+```
+
+```
+public boolean onOptionsItemSelected(MenuItem item) {
+    // Handle action bar item clicks here. The action bar will
+    // automatically handle clicks on the Home/Up button, so long
+    // as you specify a parent activity in AndroidManifest.xml.
+    int id = item.getItemId();
+
+    //noinspection SimplifiableIfStatement
+    if (id == R.id.action_external_web) {
+        Log.d("==>","Will display external web page");
+        showExternalWebPage();
+        return true;
     }
+
+    if (id == R.id.action_internal_web) {
+        Log.d("==>","Will display internal web page");
+        showInternalWebPage();
+        return true;
+    }
+
+    return super.onOptionsItemSelected(item);
 }
 ```
 
 Bilder läggs i samma mapp som markdown-filen.
 
-![](android.png)
+![](external.png)
+![](internal.png)
 
 Läs gärna:
 
